@@ -32,7 +32,6 @@ const getNotes = () =>
       'Content-Type': 'application/json',
     },
   })
-  .then((response) => response.json())
   .then((data) => {
     console.log('noteList', data);
     renderNoteList(data);
@@ -156,8 +155,8 @@ const renderNoteList = async (notes) => {
       const delBtnIcon = document.createElement('i');
       delBtnEl.classList.add(
         'float-right',
-        'text-danger',
-        'delete-note'
+        'delete-note',
+        'btn-danger'
       );
       delBtnIcon.classList.add(
         'fas',

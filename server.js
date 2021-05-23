@@ -51,7 +51,7 @@ app.delete('/api/notes/:id', (req, res) => {
         readFile(data => {
 
             // add the new user
-            const noteId = req.params["id"];
+            const noteId = req.params['id'];
             delete data[noteId];
 
             writeFile(JSON.stringify(data), () => {
