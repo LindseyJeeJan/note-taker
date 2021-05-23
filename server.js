@@ -23,7 +23,7 @@ app.get('/api/notes', (req, res) => {
       if (err) {
         throw err;
       }
-      res.send(JSON.parse(data));
+        res.send(JSON.parse(notes));
     });
 });
 

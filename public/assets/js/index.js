@@ -35,6 +35,7 @@ const getNotes = () =>
   .then((response) => response.json())
   .then((data) => {
     console.log('noteList', data);
+    renderNoteList(data);
    })
   .catch((error) => {
     console.error(error);
