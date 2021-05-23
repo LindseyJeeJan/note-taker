@@ -46,7 +46,7 @@ const saveNote = (note) =>
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(note),
+    // body: JSON.stringify(note),
   })
   .then((data) => {
     console.log('new note saved', note);
@@ -156,14 +156,16 @@ const renderNoteList = async (notes) => {
       delBtnEl.classList.add(
         'float-right',
         'delete-note',
-        'btn-danger'
+        'btn-danger',
+        'btn'
       );
       delBtnIcon.classList.add(
         'fas',
         'fa-trash-alt',
       );
-      delBtnEl.innerText = "Delete";
-      delBtnEl.appendChild(delBtnIcon);
+      
+      delBtnEl.innerText = " Delete";
+      delBtnEl.prepend(delBtnIcon);
       delBtnEl.addEventListener('click', handleNoteDelete);
 
       liEl.append(delBtnEl);
