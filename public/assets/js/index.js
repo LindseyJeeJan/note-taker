@@ -34,11 +34,11 @@ const getNotes = () =>
   })
   .then((response) => response.json())
   .then((data) => {
-    console.log(data);
+    console.log('noteList', data);
    })
   .catch((error) => {
     console.error(error);
-  });
+  })
 
 const saveNote = (note) =>
   fetch('/api/notes', {
@@ -151,14 +151,19 @@ const renderNoteList = async (notes) => {
     liEl.append(spanEl);
 
     if (delBtn) {
-      const delBtnEl = document.createElement('i');
+      const delBtnEl = document.createElement('button');
+      const delBtnIcon = document.createElement('i');
       delBtnEl.classList.add(
-        'fas',
-        'fa-trash-alt',
         'float-right',
         'text-danger',
         'delete-note'
       );
+      delBtnIcon.classList.add(
+        'fas',
+        'fa-trash-alt',
+      );
+      delBtnEl.innerText = "Delete";
+      delBtnEl.appendChild(delBtnIcon);
       delBtnEl.addEventListener('click', handleNoteDelete);
 
       liEl.append(delBtnEl);
