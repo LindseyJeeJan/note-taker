@@ -31,6 +31,13 @@ const getNotes = () =>
     headers: {
       'Content-Type': 'application/json',
     },
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+   })
+  .catch((error) => {
+    console.error(error);
   });
 
 const saveNote = (note) =>
@@ -40,6 +47,12 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
+  })
+  .then((data) => {
+    console.log('new note saved', note);
+  })
+  .catch((error) => {
+      console.error('Error:', error);
   });
 
 const deleteNote = (id) =>
