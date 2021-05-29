@@ -31,14 +31,7 @@ const getNotes = () =>
     headers: {
       'Content-Type': 'application/json',
     },
-  })
-  .then((data) => {
-    console.log('noteList', data);
-    renderNoteList(data);
-   })
-  .catch((error) => {
-    console.error(error);
-  })
+  });
 
 const saveNote = (note) =>
   fetch('/api/notes', {
@@ -46,13 +39,7 @@ const saveNote = (note) =>
     headers: {
       'Content-Type': 'application/json',
     },
-    // body: JSON.stringify(note),
-  })
-  .then((data) => {
-    console.log('new note saved', note);
-  })
-  .catch((error) => {
-      console.error('Error:', error);
+    body: JSON.stringify(note),
   });
 
 const deleteNote = (id) =>
@@ -97,7 +84,6 @@ const handleNoteDelete = (e) => {
 
   const note = e.target;
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
-
   if (activeNote.id === noteId) {
     activeNote = {};
   }
@@ -150,22 +136,15 @@ const renderNoteList = async (notes) => {
 
     liEl.append(spanEl);
 
-    if (delBtn) {
-      const delBtnEl = document.createElement('button');
-      const delBtnIcon = document.createElement('i');
+if (delBtn) {
+      const delBtnEl = document.createElement('i');
       delBtnEl.classList.add(
-        'float-right',
-        'delete-note',
-        'btn-danger',
-        'btn'
-      );
-      delBtnIcon.classList.add(
         'fas',
         'fa-trash-alt',
+        'float-right',
+        'text-danger',
+        'delete-note'
       );
-      
-      delBtnEl.innerText = " Delete";
-      delBtnEl.prepend(delBtnIcon);
       delBtnEl.addEventListener('click', handleNoteDelete);
 
       liEl.append(delBtnEl);
